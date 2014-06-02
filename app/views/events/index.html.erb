@@ -1,0 +1,23 @@
+<h1>Recently Created Events</h1>
+<table>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr><td><span style ="font-weight:bold; font-size: 20px; margin-top: 20px;"><%= event.title %></span></td></tr>
+      <tr>
+        <td><span style ="font-weight:bold;">Start Date :</span><%= l event.start_date, :format => :date_format %></td>
+        <td><span style ="font-weight:bold;">End Date : </span><%= l event.end_date, :format => :date_format %></td>
+      </tr>
+      <tr><td><span style ="font-weight:bold;">Location :</span><%= event.location %></td></tr>
+      <tr><td><span style ="font-weight:bold;">Agenda :</span><%= event.agenda %></td></tr>
+      <tr><td><span style ="font-weight:bold;">Address :</span><%= event.address %></td></tr>
+      <tr><td><span style ="font-weight:bold;">Organized By :</span><%= User.find(event.organizer_id).email%></td></tr>
+      <td><%= link_to 'Show Details', event, :class=>"btn btn-primary btn-small"%>
+      <%= link_to 'Edit', edit_event_path(event), :class=>"btn btn-success btn-small" %>
+      <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %></td>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>
